@@ -1,5 +1,6 @@
 const ipReservations = [
   { ip: "192.168.2.1", name: "home", description: "pfsense router" },
+  { ip: "192.168.2.2", name: "dns", description: "unbound dns server" },
   { ip: "192.168.2.3", name: "proxmox", description: "hypervisor" },
   { ip: "192.168.2.4", name: "proxmox2", description: "secondary hypervisor" },
   { ip: "192.168.2.5", name: "admin", description: "linux server with admin tools" },
@@ -15,6 +16,7 @@ const ipReservations = [
   { ip: "192.168.2.35", name: "servarr", description: "servarr appliation server" },
   { ip: "192.168.2.36", name: "grist", description: "grist server" },
   { ip: "192.168.2.37", name: "plex", description: "plex media server" },
+  { ip: "192.168.2.50-199", name: "dhcp", description: "plex media server" },
   { ip: "192.168.2.200", name: "synology", description: "network storage" },
   { ip: "192.168.2.205", name: "unifi", description: "ubiquiti wifi controller" },
   // Add more reservations as needed
