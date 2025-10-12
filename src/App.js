@@ -1,6 +1,10 @@
 import React from "react";
-import { Router as Router, Routes, Route, Link } from "react-router-dom";
-import IpReservationsPage from "./pages/IpReservationsPage";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import IpReservationsPage from "./data/IpReservationsPage";
+
+function Home() {
+  return <div>Welcome to the Home Page!</div>;
+}
 
 function App() {
   return (
@@ -17,8 +21,8 @@ function App() {
         </a>
       </nav>
       <Routes>
-        <Route path="/" element={<div>Welcome to the site!</div>} />
-        <Route path="/ip-reservations" element={<IpReservationsPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/ip-reservation" element={<IpReservationsPage />} />
       </Routes>
     </Router>
   );
