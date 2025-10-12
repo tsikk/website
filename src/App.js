@@ -5,6 +5,21 @@ import IpReservationsPage from "./pages/IpReservationsPage";
 function App() {
   return (
     <Router>
+      <header style={{ padding: "1rem", textAlign: "center" }}>
+        <a
+          href="/data/Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            fontWeight: "bold",
+            textDecoration: "none",
+            color: "#1976d2",
+            fontSize: "1.2rem"
+          }}
+        >
+          View My Resume
+        </a>
+      </header>
       <nav>
         <Link to="/">Home</Link>
         {" | "}
