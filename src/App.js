@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import IpReservationsPage from "./data/IpReservationsPage";
+import IpReservationsPage from "./pages/IpReservationsPage";
 
 function Home() {
   return <div>Welcome to the Home Page!</div>;
