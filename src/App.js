@@ -5,29 +5,20 @@ import IpReservationsPage from "./pages/IpReservationsPage";
 function App() {
   return (
     <Router>
-      <header style={{ padding: "1rem", textAlign: "center" }}>
+      <nav style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <a href="/">Home</a>
+        <a href="/ip-reservation">IP Reservations</a>
         <a
           href="/data/Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            fontWeight: "bold",
-            textDecoration: "none",
-            color: "#1976d2",
-            fontSize: "1.2rem"
-          }}
         >
-          View My Resume
+          Resume
         </a>
-      </header>
-      <nav>
-        <Link to="/">Home</Link>
-        {" | "}
-        <Link to="/ip-reservations">IP Reservations</Link>
       </nav>
       <Routes>
         <Route path="/" element={<div>Welcome to the site!</div>} />
-        <Route path="/ip-reservations" element={<IpReservationsPage />} />
+        <Route path="/ip-reservation" element={<IpReservationsPage />} />
       </Routes>
     </Router>
   );
