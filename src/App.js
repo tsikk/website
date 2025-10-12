@@ -1,13 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Router as Router, Routes, Route, Link } from "react-router-dom";
 import IpReservationsPage from "./pages/IpReservationsPage";
 
 function App() {
   return (
     <Router>
       <nav style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
-        <a href="/">Home</a>
-        <a href="/ip-reservation">IP Reservations</a>
+        <Link to="/">Home</Link>
+        <Link to="/ip-reservation">IP Reservations</Link>
         <a
           href="/data/Resume.pdf"
           target="_blank"
@@ -18,7 +18,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<div>Welcome to the site!</div>} />
-        <Route path="/ip-reservation" element={<IpReservationsPage />} />
+        <Route path="/ip-reservations" element={<IpReservationsPage />} />
       </Routes>
     </Router>
   );
