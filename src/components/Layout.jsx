@@ -3,10 +3,8 @@ import { Link } from "../navigation";
 import profile from "../data/profile";
 
 const navItems = [
-  { to: "/#about", label: "About", hash: true },
-  { to: "/#experience", label: "Experience", hash: true },
-  { to: "/#skills", label: "Skills", hash: true },
-  { to: "/resume", label: "Resume", hash: false },
+  { to: "/#about", label: "About" },
+  { to: "/#skills", label: "Skills" },
 ];
 
 function Layout({ children }) {
@@ -40,43 +38,25 @@ function Layout({ children }) {
             <span className="menu-bars" aria-hidden="true" />
           </button>
           <nav id="site-nav" className={`site-nav${menuOpen ? " is-open" : ""}`}>
-            {navItems.map((item) =>
-              item.hash ? (
-                <a key={item.label} href={item.to} onClick={closeMenu}>
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  onClick={closeMenu}
-                  className={({ isActive }) => (isActive ? "is-active" : undefined)}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
-            <a className="nav-resume" href={profile.resumePdf} onClick={closeMenu}>
-              PDF
-            </a>
+            {navItems.map((item) => (
+              <a key={item.label} href={item.to} onClick={closeMenu}>
+                {item.label}
+              </a>
+            ))}
           </nav>
         </div>
       </header>
       <main id="main">{children}</main>
       <footer className="site-footer">
         <div className="footer-inner">
-          <p>
-            {profile.name} · {profile.location}
-          </p>
+          <p>{profile.name}</p>
           <p className="footer-links">
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>
             <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
             <a href={profile.github} target="_blank" rel="noopener noreferrer">
               GitHub
             </a>
-            <a href={profile.resumePdf}>Resume PDF</a>
           </p>
         </div>
       </footer>

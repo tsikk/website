@@ -24,4 +24,4 @@ GitHub Pages serves the `gh-pages` branch. From a machine with push access:
 npm run deploy
 ```
 
-That builds the React app and publishes the `build` folder. The custom domain is `www.tsikk.com` (`public/CNAME`). The build copies `index.html` to `404.html` so paths like `/resume` still load the app on GitHub Pages.
+The custom domain is `www.tsikk.com` (`public/CNAME`). The build copies `index.html` to `404.html` so unknown paths still load the app on GitHub Pages.
