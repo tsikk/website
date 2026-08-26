@@ -1,30 +1,58 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import IpReservationsPage from "./pages/IpReservationsPage";
+import { useEffect, useMemo, useState } from "react";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+import ResumePage from "./pages/ResumePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import { NavigationContext } from "./navigation";
+import "./App.css";
 
-function Home() {
-  return <div>Welcome to the Home Page!</div>;
+function currentPath() {
+  return window.location.pathname.replace(/\/+$/, "") || "/";
 }
 
 function App() {
+  const [path, setPath] = useState(currentPath);
+
+  useEffect(() => {
+    const onPop = () => setPath(currentPath());
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  useEffect(() => {
+    if (path === "/ip-reservation" || path === "/ip-reservations") {
+      window.history.replaceState({}, "", "/");
+      setPath("/");
+    }
+  }, [path]);
+
+  const navigate = useMemo(
+    () => (to, { replace = false } = {}) => {
+      if (replace) {
+        window.history.replaceState({}, "", to);
+      } else {
+        window.history.pushState({}, "", to);
+      }
+      setPath(currentPath());
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    },
+    []
+  );
+
+  const page =
+    path === "/" || path === "/ip-reservation" || path === "/ip-reservations" ? (
+      <HomePage />
+    ) : path === "/resume" ? (
+      <ResumePage />
+    ) : (
+      <NotFoundPage />
+    );
+
   return (
-    <Router>
-      <nav style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
-        <Link to="/">Home</Link>
-        <Link to="/ip-reservation">IP Reservations</Link>
-        <a
-          href="/data/Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Resume
-        </a>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/ip-reservation" element={<IpReservationsPage />} />
-      </Routes>
-    </Router>
+    <NavigationContext.Provider value={{ path, navigate }}>
+      <Layout>{page}</Layout>
+    </NavigationContext.Provider>
   );
 }
 

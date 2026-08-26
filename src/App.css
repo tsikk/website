@@ -1,38 +1,626 @@
-.App {
-  text-align: center;
+:root {
+  --bg: #0c1016;
+  --bg-elevated: #141a22;
+  --ink: #eef2f6;
+  --muted: #9aa6b4;
+  --line: rgba(238, 242, 246, 0.1);
+  --accent: #c4a574;
+  --accent-strong: #d8bc8c;
+  --paper: #f7f3ea;
+  --paper-ink: #1c1915;
+  --paper-muted: #5c564c;
+  --radius: 18px;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-serif: "Fraunces", "Times New Roman", serif;
+  --header-h: 76px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 12px);
 }
 
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: #f0e2c4;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 560;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+p,
+ul,
+ol,
+dl {
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 20;
+  background: var(--accent);
+  color: #1a140c;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.site {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(16px);
+  background: rgba(12, 16, 22, 0.86);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner,
+.footer-inner,
+.hero,
+.section,
+.resume-page {
+  width: min(1080px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.header-inner {
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--accent);
+  color: var(--accent-strong);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-name {
+  font-weight: 600;
+}
+
+.brand-title {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  width: 44px;
+  height: 44px;
+  color: var(--ink);
+}
+
+.menu-bars,
+.menu-bars::before,
+.menu-bars::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  margin: 0 auto;
+  position: relative;
+}
+
+.menu-bars::before,
+.menu-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-bars::before {
+  top: -6px;
+}
+
+.menu-bars::after {
+  top: 6px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.site-nav a:hover,
+.site-nav a.is-active {
+  color: var(--ink);
+}
+
+.nav-resume {
+  border: 1px solid var(--accent);
+  color: var(--accent-strong) !important;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+}
+
+main {
+  flex: 1;
+}
+
+.hero {
+  padding: 5.5rem 0 4rem;
+}
+
+.eyebrow {
+  color: var(--accent-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6.2rem);
+  font-optical-sizing: auto;
+}
+
+.hero-title {
+  margin-top: 0.7rem;
+  font-size: 1.25rem;
+  color: var(--muted);
+}
+
+.hero-tagline {
+  max-width: 38rem;
+  margin-top: 1.4rem;
+  font-size: 1.2rem;
+  color: #d5dde6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 46px;
+  padding: 0.7rem 1.15rem;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  font: inherit;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.button-primary {
+  background: var(--accent);
+  color: #1a140c;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.button-primary:hover {
+  background: var(--accent-strong);
+  color: #1a140c;
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.button-secondary:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+.section {
+  padding: 1.5rem 0 4.5rem;
+}
+
+.section-heading {
+  margin-bottom: 1.8rem;
+}
+
+.section-heading h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-top: 0.35rem;
+}
+
+.about-grid,
+.skill-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.about-grid {
+  grid-template-columns: minmax(0, 1.6fr) minmax(18rem, 0.9fr);
+  align-items: start;
+}
+
+.prose {
+  display: grid;
+  gap: 1rem;
+  font-size: 1.05rem;
+  color: #d7dee6;
+}
+
+.contact-card,
+.skill-card,
+.education-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.4rem;
+}
+
+.contact-card h3,
+.skill-card h3,
+.education-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.contact-card dl {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.contact-card dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.contact-card dd {
+  margin: 0.15rem 0 0;
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline-dates {
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.timeline-company,
+.muted {
+  color: var(--muted);
+}
+
+.timeline-body h3 {
+  font-size: 1.45rem;
+  margin-bottom: 0.7rem;
+}
+
+.timeline-body ul,
+.resume-job ul {
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.competency-list {
+  list-style: none;
+  padding: 0 0 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.competency-list li {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  color: #d5dde6;
+  font-size: 0.92rem;
+}
+
+.skill-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.skill-card ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+  color: #d5dde6;
+}
+
+.education-card p + p {
+  margin-top: 0.25rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 0 2rem;
+  color: var(--muted);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.not-found {
+  padding-bottom: 6rem;
+}
+
+.resume-page {
+  padding: 2.5rem 0 4.5rem;
+}
+
+.resume-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.resume-toolbar p {
+  max-width: 36rem;
+  color: var(--muted);
+}
+
+.resume-toolbar .hero-actions {
+  margin-top: 0;
+}
+
+.resume-sheet {
+  background: var(--paper);
+  color: var(--paper-ink);
+  padding: clamp(1.4rem, 4vw, 3rem);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.resume-sheet a {
+  color: #6b4f24;
+}
+
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 2px solid #1c1915;
+  margin-bottom: 1.4rem;
+}
+
+.resume-header h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+}
+
+.resume-role {
+  margin-top: 0.3rem;
+  color: var(--paper-muted);
+  font-size: 1.1rem;
+}
+
+.resume-contacts {
+  list-style: none;
+  padding: 0;
+  text-align: right;
+  font-size: 0.92rem;
+}
+
+.resume-sheet h2 {
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 1.4rem 0 0.6rem;
+  color: #6b4f24;
+}
+
+.resume-job {
+  margin-bottom: 1rem;
+}
+
+.resume-job-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.resume-job h3,
+.resume-sheet .resume-job-heading h3 {
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.resume-company {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--paper-muted);
+}
+
+.resume-dates {
+  color: var(--paper-muted);
+  white-space: nowrap;
+}
+
+.resume-skills,
+.resume-skill-line {
+  margin-bottom: 0.45rem;
+}
+
+@media (max-width: 800px) {
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    background: #10161d;
+    border-bottom: 1px solid var(--line);
+    padding: 1rem 1.25rem 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .about-grid,
+  .timeline-item,
+  .skill-grid,
+  .resume-header,
+  .resume-job-heading {
+    grid-template-columns: 1fr;
+    display: grid;
+    text-align: left;
+  }
+
+  .resume-contacts {
+    text-align: left;
+  }
+
+  .hero {
+    padding-top: 3.2rem;
+  }
+}
+
+@media print {
+  :root {
+    --bg: #fff;
+  }
+
+  body,
+  .site {
+    background: #fff;
+    color: #111;
+  }
+
+  .site-header,
+  .site-footer,
+  .no-print,
+  .skip-link,
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .resume-page {
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-sheet {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
   }
 }
