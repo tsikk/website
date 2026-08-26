@@ -18,10 +18,12 @@ npm run build
 
 ## Deploy
 
-GitHub Pages serves the `gh-pages` branch. From a machine with push access:
+GitHub Pages serves the built site from the `gh-pages` branch (`www.tsikk.com`).
+
+Pushing to `main` (or running the **Deploy GitHub Pages** workflow from the Actions tab) builds the React app and publishes it. You do not need to run anything locally.
+
+The old local command still works if you ever need it:
 
 ```bash
 npm run deploy
 ```
-
-That builds the React app and publishes the `build` folder. The custom domain is `www.tsikk.com` (`public/CNAME`). The build copies `index.html` to `404.html` so paths like `/resume` still load the app on GitHub Pages.
