@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
-import ResumePage from "./pages/ResumePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { NavigationContext } from "./navigation";
 import "./App.css";
@@ -9,6 +8,8 @@ import "./App.css";
 function currentPath() {
   return window.location.pathname.replace(/\/+$/, "") || "/";
 }
+
+const homeAliases = new Set(["/", "/resume", "/ip-reservation", "/ip-reservations"]);
 
 function App() {
   const [path, setPath] = useState(currentPath);
@@ -20,7 +21,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (path === "/ip-reservation" || path === "/ip-reservations") {
+    if (path !== "/" && homeAliases.has(path)) {
       window.history.replaceState({}, "", "/");
       setPath("/");
     }
@@ -40,14 +41,7 @@ function App() {
     []
   );
 
-  const page =
-    path === "/" || path === "/ip-reservation" || path === "/ip-reservations" ? (
-      <HomePage />
-    ) : path === "/resume" ? (
-      <ResumePage />
-    ) : (
-      <NotFoundPage />
-    );
+  const page = homeAliases.has(path) ? <HomePage /> : <NotFoundPage />;
 
   return (
     <NavigationContext.Provider value={{ path, navigate }}>
