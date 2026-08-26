@@ -1,17 +1,11 @@
-const resumePdf = `${process.env.PUBLIC_URL || ""}/data/Resume.pdf`;
-
 const profile = {
   name: "Trent Sikkema",
   shortName: "TS",
   title: "Platform Engineer",
   location: "Pella, Iowa",
-  email: "tsikkema@gmail.com",
-  phone: "641-780-3293",
-  phoneHref: "tel:+16417803293",
   website: "https://www.tsikk.com",
   linkedin: "https://www.linkedin.com/in/trent-sikkema-a44a0135",
   github: "https://github.com/tsikk",
-  resumePdf,
   tagline:
     "I keep developers moving — from enterprise Windows and Linux estates to GitHub-driven Kubernetes delivery.",
   summary:

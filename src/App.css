@@ -340,6 +340,12 @@ main {
   margin-bottom: 1rem;
 }
 
+.contact-note {
+  color: var(--muted);
+  margin: -0.4rem 0 1rem;
+  font-size: 0.95rem;
+}
+
 .contact-card dl {
   display: grid;
   gap: 0.9rem;

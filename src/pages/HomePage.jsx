@@ -25,8 +25,13 @@ function HomePage() {
           <Link className="button button-primary" to="/resume">
             View resume
           </Link>
-          <a className="button button-secondary" href={`mailto:${profile.email}`}>
-            Email me
+          <a
+            className="button button-secondary"
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
           </a>
         </div>
       </section>
@@ -44,19 +49,8 @@ function HomePage() {
           </div>
           <aside className="contact-card">
             <h3>Contact</h3>
+            <p className="contact-note">The best way to reach me is LinkedIn.</p>
             <dl>
-              <div>
-                <dt>Email</dt>
-                <dd>
-                  <a href={`mailto:${profile.email}`}>{profile.email}</a>
-                </dd>
-              </div>
-              <div>
-                <dt>Phone</dt>
-                <dd>
-                  <a href={profile.phoneHref}>{profile.phone}</a>
-                </dd>
-              </div>
               <div>
                 <dt>Location</dt>
                 <dd>{profile.location}</dd>

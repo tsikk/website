@@ -4,12 +4,9 @@ function ResumePage() {
   return (
     <div className="resume-page">
       <div className="resume-toolbar no-print">
-        <p>A formatted copy of my resume. Download the PDF for a portable version.</p>
+        <p>A formatted copy of my resume. Use Print if you want a PDF.</p>
         <div className="hero-actions">
-          <a className="button button-primary" href={profile.resumePdf}>
-            Download PDF
-          </a>
-          <button className="button button-secondary" type="button" onClick={() => window.print()}>
+          <button className="button button-primary" type="button" onClick={() => window.print()}>
             Print
           </button>
         </div>
@@ -22,12 +19,6 @@ function ResumePage() {
             <p className="resume-role">{profile.title}</p>
           </div>
           <ul className="resume-contacts">
-            <li>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </li>
-            <li>
-              <a href={profile.phoneHref}>{profile.phone}</a>
-            </li>
             <li>{profile.location}</li>
             <li>
               <a href={profile.website}>{profile.website.replace(/^https:\/\//, "")}</a>
@@ -35,6 +26,11 @@ function ResumePage() {
             <li>
               <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
                 LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href={profile.github} target="_blank" rel="noopener noreferrer">
+                GitHub
               </a>
             </li>
           </ul>

@@ -56,9 +56,6 @@ function Layout({ children }) {
                 </Link>
               )
             )}
-            <a className="nav-resume" href={profile.resumePdf} onClick={closeMenu}>
-              PDF
-            </a>
           </nav>
         </div>
       </header>
@@ -69,14 +66,13 @@ function Layout({ children }) {
             {profile.name} · {profile.location}
           </p>
           <p className="footer-links">
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>
             <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
             <a href={profile.github} target="_blank" rel="noopener noreferrer">
               GitHub
             </a>
-            <a href={profile.resumePdf}>Resume PDF</a>
+            <Link to="/resume">Resume</Link>
           </p>
         </div>
       </footer>
